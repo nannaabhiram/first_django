@@ -1,0 +1,29 @@
+{% load static %}
+<!-- Bootstrap 3 CSS for navbar-inverse + glyphicons -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+{% include 'navbar.html' %}
+
+<h1>Calculator</h1>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="a" value="{{ a }}" placeholder="First number" />
+  <select name="op">
+    <option value="+" {% if op == '+' %}selected{% endif %}>+</option>
+    <option value="-" {% if op == '-' %}selected{% endif %}>-</option>
+    <option value="*" {% if op == '*' %}selected{% endif %}>*</option>
+    <option value="/" {% if op == '/' %}selected{% endif %}>/</option>
+  </select>
+  <input type="text" name="b" value="{{ b }}" placeholder="Second number" />
+  <button type="submit">=</button>
+</form>
+
+{% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+{% if result is not None %}<p>Result: {{ result }}</p>{% endif %}
+
+<!-- Optional: Bootstrap JS (for dropdowns, etc.) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
