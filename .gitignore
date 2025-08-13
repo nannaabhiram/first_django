@@ -8,7 +8,6 @@ db.sqlite3
 *.log
 
 # Environment
-y24django/
 y24env/
 .venv/
 
